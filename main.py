@@ -1,3 +1,4 @@
+import asyncio
 import os
 import re
 import secrets
@@ -160,11 +161,11 @@ async def scrape_leads(req: ScrapeRequest, request: Request):
     prompt = build_prompt(req.num_leads, req.niche, req.industry, req.location)
 
     try:
-        result = extract_leads(firecrawl_app, prompt)
+        result = await asyncio.to_thread(extract_leads, firecrawl_app, prompt)
     except RuntimeError as e:
         raise ExtractionError(str(e)) from e
 
-    csv_file_path = save_to_csv(result, req.industry, req.location)
+    csv_file_path = await asyncio.to_thread(save_to_csv, result, req.industry, req.location)
 
     if not csv_file_path or not os.path.exists(csv_file_path):
         raise AppError("Failed to save the CSV file or no leads were found.", code="CSV_ERROR")
