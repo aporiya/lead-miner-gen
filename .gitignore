@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+
+# Project specific
+output/*.csv
+!output/.gitkeep
+
+# IDEs
+.vscode/
+.idea/
+.gemini/
