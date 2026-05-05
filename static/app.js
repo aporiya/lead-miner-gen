@@ -7,14 +7,66 @@
 
 // ─── GLOBAL STATE ─────────────────────────────────────
 const State = {
-    activeTab:    'miner',         // 'miner' | 'csv-files' | viewer tab IDs
-    csrfToken:    '',
-    isCrawling:   false,
-    crawlStart:   null,
-    timerHandle:  null,
-    lastResult:   null,            // { leads, download_url }
-    viewerTabs:   {},              // { [tabId]: { filename } }
-    nextViewerId: 1,
+  activeTab: 'miner',
+  csrfToken: '',
+  isCrawling: false,
+  crawlStart: null,
+  timerHandle: null,
+  lastResult: null,
+  viewerTabs: {},
+  nextViewerId: 1,
+};
+
+// ─── THEME MANAGER ───────────────────────────────────
+const Theme = {
+  KEY: 'lead-miner-theme',
+
+  init() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => this.toggle());
+    this._apply(this.get());
+    window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem(this.KEY)) {
+        this._apply(e.matches ? 'dark' : 'light');
+      }
+    });
+  },
+
+  get() {
+    const stored = localStorage.getItem(this.KEY);
+    if (stored === 'dark' || stored === 'light') return stored;
+    return window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  },
+
+  toggle() {
+    const next = this.get() === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(this.KEY, next);
+    this._apply(next);
+  },
+
+  _apply(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
+      const sun = document.getElementById('toggle-sun');
+      const moon = document.getElementById('toggle-moon');
+      if (sun && moon) {
+        if (theme === 'dark') {
+          moon.classList.add('active');
+          moon.classList.remove('inactive');
+          sun.classList.remove('active');
+          sun.classList.add('inactive');
+        } else {
+          sun.classList.add('active');
+          sun.classList.remove('inactive');
+          moon.classList.remove('active');
+          moon.classList.add('inactive');
+        }
+      }
+    }
+  },
 };
 
 // ─── DOM REFS ──────────────────────────────────────────
@@ -533,16 +585,17 @@ const Toast = {
 
 // ─── INIT ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // Wire permanent tab buttons
-    document.getElementById('tab-btn-miner').addEventListener('click', () => Tabs.switch('miner'));
-    document.getElementById('tab-btn-csv').addEventListener('click', () => {
-        Tabs.switch('csv-files');
-        CsvFiles.load();
-    });
+  // Wire permanent tab buttons
+  document.getElementById('tab-btn-miner').addEventListener('click', () => Tabs.switch('miner'));
+  document.getElementById('tab-btn-csv').addEventListener('click', () => {
+    Tabs.switch('csv-files');
+    CsvFiles.load();
+  });
 
-    // Init modules
-    Miner.init();
-    CsvFiles.init();
+  // Init modules
+  Theme.init();
+  Miner.init();
+  CsvFiles.init();
 
     // Pre-fetch CSRF token silently
     CSRF.fetch();

@@ -18,7 +18,11 @@ from leadgen import build_prompt, extract_leads, save_to_csv, extract_leads_from
 
 load_dotenv()
 
-logging.basicConfig(level=logging.INFO)
+# ── Logging setup (compatible with uvicorn's pre-installed handlers) ──
+# basicConfig() is a no-op when uvicorn has already attached handlers.
+# We explicitly set levels so our app and leadgen logs always surface.
+logging.getLogger().setLevel(logging.INFO)          # root
+logging.getLogger("leadgen").setLevel(logging.INFO) # leadgen module
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Lead Miner API")
@@ -154,8 +158,11 @@ async def scrape_leads(req: ScrapeRequest, request: Request):
         raise ConfigurationError("Firecrawl application is not configured. Check API key.")
 
     logger.info(
-        f"Received scrape request: num_leads={req.num_leads}, "
-        f"industry={req.industry[:40]!r}, location={req.location[:40]!r}"
+        "[SCRAPE] Start — num_leads=%d  industry=%r  location=%r  niche=%r",
+        req.num_leads,
+        req.industry[:40],
+        req.location[:40],
+        req.niche[:60],
     )
 
     prompt = build_prompt(req.num_leads, req.niche, req.industry, req.location)
@@ -170,7 +177,7 @@ async def scrape_leads(req: ScrapeRequest, request: Request):
     if not csv_file_path or not os.path.exists(csv_file_path):
         raise AppError("Failed to save the CSV file or no leads were found.", code="CSV_ERROR")
 
-    logger.info("Returning JSON with leads and CSV path.")
+    logger.info("[SCRAPE] Done — %d leads extracted, CSV: %s", len(leads), csv_file_path)
 
     leads = extract_leads_from_result(result)
 
