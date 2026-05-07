@@ -1,4 +1,4 @@
-# Lead Miner — AI-Powered Business Lead Generation
+# Lead Miner - AI-Powered Business Lead Generation
 
 A premium, single-page web application (SPA) built with Python, FastAPI, and Firecrawl to systematically extract high-quality, targeted business leads. It leverages AI agents to discover businesses within specific niches, extract structured contact information, and manage lead datasets through an interactive dashboard.
 
