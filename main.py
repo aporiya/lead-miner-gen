@@ -172,6 +172,9 @@ async def scrape_leads(req: ScrapeRequest, request: Request):
     except RuntimeError as e:
         raise ExtractionError(str(e)) from e
 
+    # Extract leads first so we can log the count and return them
+    leads = extract_leads_from_result(result)
+
     csv_file_path = await asyncio.to_thread(save_to_csv, result, req.industry, req.location)
 
     if not csv_file_path or not os.path.exists(csv_file_path):
@@ -179,10 +182,16 @@ async def scrape_leads(req: ScrapeRequest, request: Request):
 
     logger.info("[SCRAPE] Done — %d leads extracted, CSV: %s", len(leads), csv_file_path)
 
-    leads = extract_leads_from_result(result)
+    # Serialize Pydantic models to plain dicts so FastAPI can JSON-encode them
+    serialized_leads = [
+        lead.model_dump() if hasattr(lead, 'model_dump') else
+        lead.dict() if hasattr(lead, 'dict') else
+        lead
+        for lead in leads
+    ]
 
     return {
-        "leads": leads,
+        "leads": serialized_leads,
         "download_url": f"/api/download/{os.path.basename(csv_file_path)}",
     }
 
