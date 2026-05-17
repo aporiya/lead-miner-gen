@@ -1,292 +1,322 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-<title>Lead Miner — AI-Powered Business Lead Generation</title>
-<meta name="description" content="Extract targeted business leads using AI-powered web crawling. Browse, view, and download structured CSV datasets.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="app.css">
-<script>
-(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t)}else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}else{document.documentElement.setAttribute('data-theme','light')}})();
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <title>Lead Miner</title>
+    <meta name="description"
+        content="Extract targeted business leads using AI-powered web crawling. Browse, view, and download structured CSV datasets.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+    <script>
+        (function () { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') { document.documentElement.setAttribute('data-theme', t) } else if (window.matchMedia('(prefers-color-scheme:dark)').matches) { document.documentElement.setAttribute('data-theme', 'dark') } else { document.documentElement.setAttribute('data-theme', 'light') } })();
+    </script>
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════
 TOP NAVIGATION BAR
 ═════════════════════════════ -->
-<nav class="topnav" role="navigation" aria-label="Main navigation">
-<div class="topnav-brand">
-<svg class="brand-icon" width="26" height="26" viewBox="0 0 24 24" fill="none">
-<path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#nav-g1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2 17L12 22L22 17" stroke="url(#nav-g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2 12L12 17L22 12" stroke="url(#nav-g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<defs>
-<linearGradient id="nav-g1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
-<stop stop-color="#640D5F"/><stop offset="1" stop-color="#D91656"/>
-</linearGradient>
-<linearGradient id="nav-g2" x1="2" y1="17" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-<stop stop-color="#640D5F"/><stop offset="1" stop-color="#D91656"/>
-</linearGradient>
-<linearGradient id="nav-g3" x1="2" y1="12" x2="22" y2="17" gradientUnits="userSpaceOnUse">
-<stop stop-color="#640D5F"/><stop offset="1" stop-color="#D91656"/>
-</linearGradient>
-</defs>
-</svg>
-<span class="brand-name">Lead Miner</span>
-</div>
+    <nav class="topnav" role="navigation" aria-label="Main navigation">
+        <div class="topnav-brand">
+            <svg class="brand-icon" width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#nav-g1)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 17L12 22L22 17" stroke="url(#nav-g2)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 12L12 17L22 12" stroke="url(#nav-g3)" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <defs>
+                    <linearGradient id="nav-g1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#640D5F" />
+                        <stop offset="1" stop-color="#D91656" />
+                    </linearGradient>
+                    <linearGradient id="nav-g2" x1="2" y1="17" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#640D5F" />
+                        <stop offset="1" stop-color="#D91656" />
+                    </linearGradient>
+                    <linearGradient id="nav-g3" x1="2" y1="12" x2="22" y2="17" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#640D5F" />
+                        <stop offset="1" stop-color="#D91656" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span class="brand-name">Lead Miner</span>
+        </div>
 
-<div class="topnav-tabs" id="nav-tabs">
-<!-- Tab 1: Lead Miner (permanent) -->
-<button class="nav-tab active" id="tab-btn-miner" data-tab="miner" aria-selected="true" role="tab">
-<span class="nav-tab-icon">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-</svg>
-</span>
-<span class="nav-tab-label">Lead Miner</span>
-<span class="nav-tab-badge running-badge hidden" id="miner-running-badge">Running</span>
-</button>
+        <div class="topnav-tabs" id="nav-tabs">
+            <!-- Tab 1: Lead Miner (permanent) -->
+            <button class="nav-tab active" id="tab-btn-miner" data-tab="miner" aria-selected="true" role="tab">
+                <span class="nav-tab-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                </span>
+                <span class="nav-tab-label">Miner</span>
+                <span class="nav-tab-badge running-badge hidden" id="miner-running-badge">Running</span>
+            </button>
 
-<!-- Tab 2: CSV Files (permanent) -->
-<button class="nav-tab" id="tab-btn-csv" data-tab="csv-files" aria-selected="false" role="tab">
-<span class="nav-tab-icon">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-</svg>
-</span>
-<span class="nav-tab-label">CSV Files</span>
-<span class="nav-tab-count hidden" id="csv-file-count">0</span>
-</button>
+            <!-- Tab 2: CSV Files (permanent) -->
+            <button class="nav-tab" id="tab-btn-csv" data-tab="csv-files" aria-selected="false" role="tab">
+                <span class="nav-tab-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                    </svg>
+                </span>
+                <span class="nav-tab-label">CSV Files</span>
+                <span class="nav-tab-count hidden" id="csv-file-count">0</span>
+            </button>
 
-<!-- Dynamic CSV Viewer tabs will be injected here -->
-<div id="dynamic-tabs" class="dynamic-tabs"></div>
-</div>
+            <!-- Dynamic CSV Viewer tabs will be injected here -->
+            <div id="dynamic-tabs" class="dynamic-tabs"></div>
+        </div>
 
-<div class="topnav-right">
-<!-- Theme Toggle -->
-<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" role="switch" aria-checked="false">
-<span class="theme-toggle-track">
-<span class="theme-toggle-icon" id="toggle-sun">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-<line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-</svg>
-</span>
-<span class="theme-toggle-icon" id="toggle-moon">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-</svg>
-</span>
-</span>
-<span class="theme-toggle-thumb"></span>
-</button>
+        <div class="topnav-right">
+            <!-- Theme Toggle -->
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" role="switch"
+                aria-checked="false">
+                <span class="theme-toggle-track">
+                    <span class="theme-toggle-icon" id="toggle-sun">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                    </span>
+                    <span class="theme-toggle-icon" id="toggle-moon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    </span>
+                </span>
+                <span class="theme-toggle-thumb"></span>
+            </button>
 
-<div class="topnav-status">
-<span class="status-dot" id="status-dot"></span>
-<span class="status-label" id="status-label">Ready</span>
-</div>
-</div>
-</nav>
+            <div class="topnav-status">
+                <span class="status-dot" id="status-dot"></span>
+                <span class="status-label" id="status-label">Ready</span>
+            </div>
+        </div>
+    </nav>
 
-<!-- ═══════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════
 MAIN CONTENT AREA
 ═════════════════════════════ -->
-<main class="main-content" id="main-content">
+    <main class="main-content" id="main-content">
 
-<!-- ─── TAB: LEAD MINER ─────────────────────── -->
-<section class="tab-panel active" id="panel-miner" role="tabpanel" aria-labelledby="tab-btn-miner">
-<div class="panel-header">
-<div>
-<h1 class="panel-title">Lead Miner</h1>
-<p class="panel-subtitle">Extract targeted business leads using AI-powered web crawling</p>
-</div>
-</div>
+        <!-- ─── TAB: LEAD MINER ─────────────────────── -->
+        <section class="tab-panel active" id="panel-miner" role="tabpanel" aria-labelledby="tab-btn-miner">
+            <div class="panel-header">
+                <div>
+                    <h1 class="panel-title">Lead Miner</h1>
+                    <p class="panel-subtitle">Extract targeted business leads using AI-powered web crawling</p>
+                </div>
+            </div>
 
-<div class="panel-body">
-<div class="miner-layout">
+            <div class="panel-body">
+                <div class="miner-layout">
 
-<!-- Form card -->
-<div class="form-card glass-card">
-<form id="miner-form" novalidate>
-<div class="form-grid-2">
-<div class="field">
-<label for="f-industry">Industry</label>
-<input type="text" id="f-industry" name="industry"
-placeholder="e.g., Manufacturing, Healthcare"
-autocomplete="off" required>
-</div>
-<div class="field">
-<label for="f-location">Location</label>
-<input type="text" id="f-location" name="location"
-placeholder="e.g., Maharashtra, India"
-autocomplete="off" required
-list="location-list">
-<datalist id="location-list">
-<option value="Maharashtra, India">
-<option value="Gujarat, India">
-<option value="Karnataka, India">
-<option value="Tamil Nadu, India">
-<option value="Delhi, India">
-<option value="Mumbai, India">
-<option value="Bangalore, India">
-<option value="California, USA">
-<option value="New York, USA">
-<option value="London, UK">
-</datalist>
-</div>
-</div>
+                    <!-- Form card -->
+                    <div class="form-card glass-card">
+                        <form id="miner-form" novalidate>
+                            <div class="form-grid-2">
+                                <div class="field">
+                                    <label for="f-industry">Industry</label>
+                                    <input type="text" id="f-industry" name="industry"
+                                        placeholder="e.g., Manufacturing, Healthcare" autocomplete="off" required>
+                                </div>
+                                <div class="field">
+                                    <label for="f-location">Location</label>
+                                    <input type="text" id="f-location" name="location"
+                                        placeholder="e.g., Maharashtra, India" autocomplete="off" required
+                                        list="location-list">
+                                    <datalist id="location-list">
+                                        <option value="Maharashtra, India">
+                                        <option value="Gujarat, India">
+                                        <option value="Karnataka, India">
+                                        <option value="Tamil Nadu, India">
+                                        <option value="Delhi, India">
+                                        <option value="Mumbai, India">
+                                        <option value="Bangalore, India">
+                                        <option value="California, USA">
+                                        <option value="New York, USA">
+                                        <option value="London, UK">
+                                    </datalist>
+                                </div>
+                            </div>
 
-<div class="field">
-<label for="f-niche">Niche / Keywords</label>
-<textarea id="f-niche" name="niche" rows="3"
-placeholder="e.g., food processing plants, snack factories, industrial equipment suppliers"
-required></textarea>
-</div>
+                            <div class="field">
+                                <label for="f-niche">Niche / Keywords</label>
+                                <textarea id="f-niche" name="niche" rows="3"
+                                    placeholder="e.g., food processing plants, snack factories, industrial equipment suppliers"
+                                    required></textarea>
+                            </div>
 
-<div class="field field-slim">
-<label for="f-leads">Number of Leads <span class="label-hint">(1–100)</span></label>
-<input type="number" id="f-leads" name="num_leads"
-min="1" max="100" value="10"
-inputmode="numeric" required>
-</div>
+                            <div class="field field-slim">
+                                <label for="f-leads">Number of Leads <span class="label-hint">(1–100)</span></label>
+                                <input type="number" id="f-leads" name="num_leads" min="1" max="100" value="10"
+                                    inputmode="numeric" required>
+                            </div>
 
-<div class="form-actions">
-<button type="submit" class="btn-primary" id="start-btn">
-<svg class="btn-icon-svg spin-on-load hidden" id="start-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M21 12a9 9 0 1 1-6.219-8.56"/>
-</svg>
-<svg class="btn-icon-svg" id="start-rocket" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-</svg>
-<span id="start-btn-label">Start Crawling</span>
-</button>
-<button type="button" class="btn-ghost" id="goto-files-btn">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-</svg>
-View CSV Files
-</button>
-</div>
-</form>
-</div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary" id="start-btn">
+                                    <svg class="btn-icon-svg spin-on-load hidden" id="start-spinner" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                                    </svg>
+                                    <svg class="btn-icon-svg" id="start-rocket" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 11l3 3L22 4" />
+                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                                    </svg>
+                                    <span id="start-btn-label">Start Crawling</span>
+                                </button>
+                                <button type="button" class="btn-ghost" id="goto-files-btn">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                                    </svg>
+                                    View CSV Files
+                                </button>
+                            </div>
+                        </form>
+                    </div>
 
-<!-- Status card (visible during/after crawl) -->
-<div class="status-card glass-card hidden" id="crawl-status-card">
-<div class="status-card-header">
-<div class="status-orb" id="status-orb">
-<div class="status-orb-ring"></div>
-<div class="status-orb-inner">
-<!-- Pickaxe mining icon -->
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="orb-icon">
-<path d="M14.5 2.5 C14.5 2.5 20 4 21.5 9.5 L17 14 L15 12 Z"/>
-<path d="M15 12 L10 17"/>
-<path d="M3 21 L10 14"/>
-<path d="M10 14 L12 16 L5 23 L3 21 Z"/>
-</svg>
-</div>
-</div>
-<div class="status-card-info">
-<h3 id="crawl-title">Mining in Progress</h3>
-<p id="crawl-message">AI agents are traversing the web to find your leads...</p>
-</div>
-</div>
+                    <!-- Status card (visible during/after crawl) -->
+                    <div class="status-card glass-card hidden" id="crawl-status-card">
+                        <div class="status-card-header">
+                            <div class="status-orb" id="status-orb">
+                                <div class="status-orb-ring"></div>
+                                <div class="status-orb-inner">
+                                    <!-- Pickaxe mining icon -->
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="orb-icon">
+                                        <path d="M14.5 2.5 C14.5 2.5 20 4 21.5 9.5 L17 14 L15 12 Z" />
+                                        <path d="M15 12 L10 17" />
+                                        <path d="M3 21 L10 14" />
+                                        <path d="M10 14 L12 16 L5 23 L3 21 Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="status-card-info">
+                                <h3 id="crawl-title">Mining in Progress</h3>
+                                <p id="crawl-message">AI agents are traversing the web to find your leads...</p>
+                            </div>
+                        </div>
 
-<div class="progress-wrap">
-<div class="progress-track">
-<div class="progress-bar" id="progress-bar"></div>
-</div>
-<div class="progress-labels">
-<span id="progress-pct">0%</span>
-<span id="progress-detail">Initializing...</span>
-</div>
-</div>
+                        <div class="progress-wrap">
+                            <div class="progress-track">
+                                <div class="progress-bar" id="progress-bar"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span id="progress-pct">0%</span>
+                                <span id="progress-detail">Initializing...</span>
+                            </div>
+                        </div>
 
-<div class="crawl-stats">
-<div class="stat-item">
-<span class="stat-label">Leads Found</span>
-<span class="stat-value" id="stat-leads">—</span>
-</div>
-<div class="stat-item">
-<span class="stat-label">Status</span>
-<span class="stat-value" id="stat-status">Running</span>
-</div>
-<div class="stat-item">
-<span class="stat-label">Time Elapsed</span>
-<span class="stat-value" id="stat-time">0s</span>
-</div>
-</div>
+                        <div class="crawl-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Leads Found</span>
+                                <span class="stat-value" id="stat-leads">—</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Status</span>
+                                <span class="stat-value" id="stat-status">Running</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Time Elapsed</span>
+                                <span class="stat-value" id="stat-time">0s</span>
+                            </div>
+                        </div>
 
-<div class="status-actions hidden" id="status-actions">
-<button class="btn-highlight" id="view-result-btn">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-<circle cx="12" cy="12" r="3"/>
-</svg>
-View Result
-</button>
-<button class="btn-ghost" id="new-search-btn">
-New Search
-</button>
-</div>
-</div>
+                        <div class="status-actions hidden" id="status-actions">
+                            <button class="btn-highlight" id="view-result-btn">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                View Result
+                            </button>
+                            <button class="btn-ghost" id="new-search-btn">
+                                New Search
+                            </button>
+                        </div>
+                    </div>
 
-</div>
-</div>
-</section>
+                </div>
+            </div>
+        </section>
 
-<!-- ─── TAB: CSV FILES ──────────────────────── -->
-<section class="tab-panel" id="panel-csv-files" role="tabpanel" aria-labelledby="tab-btn-csv">
-<div class="panel-header">
-<div>
-<h1 class="panel-title">CSV Files</h1>
-<p class="panel-subtitle">Browse and view your extracted lead datasets</p>
-</div>
-<button class="btn-ghost" id="refresh-btn">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-<path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-</svg>
-Refresh
-</button>
-</div>
+        <!-- ─── TAB: CSV FILES ──────────────────────── -->
+        <section class="tab-panel" id="panel-csv-files" role="tabpanel" aria-labelledby="tab-btn-csv">
+            <div class="panel-header">
+                <div>
+                    <h1 class="panel-title">CSV Files</h1>
+                    <p class="panel-subtitle">Browse and view your extracted lead datasets</p>
+                </div>
+                <button class="btn-ghost" id="refresh-btn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10" />
+                        <polyline points="1 20 1 14 7 14" />
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                    </svg>
+                    Refresh
+                </button>
+            </div>
 
-<div class="panel-body">
-<!-- Empty state -->
-<div class="empty-state hidden" id="csv-empty">
-<div class="empty-icon">
-<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-</svg>
-</div>
-<h3>No CSV files found</h3>
-<p>Start a crawl task from the <strong>Lead Miner</strong> tab to generate lead datasets.</p>
-<button class="btn-ghost" id="go-miner-btn">Go to Lead Miner</button>
-</div>
+            <div class="panel-body">
+                <!-- Empty state -->
+                <div class="empty-state hidden" id="csv-empty">
+                    <div class="empty-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                        </svg>
+                    </div>
+                    <h3>No CSV files found</h3>
+                    <p>Start a crawl task from the <strong>Lead Miner</strong> tab to generate lead datasets.</p>
+                    <button class="btn-ghost" id="go-miner-btn">Go to Lead Miner</button>
+                </div>
 
-<!-- File grid -->
-<div class="csv-grid" id="csv-grid"></div>
-</div>
-</section>
+                <!-- File grid -->
+                <div class="csv-grid" id="csv-grid"></div>
+            </div>
+        </section>
 
-<!-- ─── DYNAMIC CSV VIEWER PANELS are injected here ─── -->
-<div id="viewer-panels"></div>
+        <!-- ─── DYNAMIC CSV VIEWER PANELS are injected here ─── -->
+        <div id="viewer-panels"></div>
 
-</main>
+    </main>
 
-<!-- ═══════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════
 TOAST NOTIFICATIONS
 ═════════════════════════════ -->
-<div id="toast-container" class="toast-container" aria-live="polite"></div>
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
